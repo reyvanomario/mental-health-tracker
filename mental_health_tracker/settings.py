@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-n85*q!2qnng^4afav^xt2a(_rurz_@$pd+$2f)-k#3ptfwmy(l
 PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = not PRODUCTION
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "reyvano-mario-mentalhealthtracker.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "reyvano-mario-mentalhealthtracker.pbp.cs.ui.ac.id", "10.0.2.2"]
 
 
 
@@ -36,6 +36,8 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "reyvano-mario-mentalhealthtracker.pb
 
 INSTALLED_APPS = [
     'main',
+    'authentication',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +55,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
 
 ROOT_URLCONF = 'mental_health_tracker.urls'
 
